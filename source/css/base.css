@@ -5,6 +5,7 @@ body{
     margin: 0;
     font-family: 'Gothic A1';
     background-color: #07111D;
+        font-weight: bold;
 }
 main{
     width: 100%;
