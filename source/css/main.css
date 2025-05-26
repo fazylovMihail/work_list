@@ -33,6 +33,24 @@ main{
 }
 .left_wrapper > #bottom_left_wrapper{
     height: 70%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.left_wrapper > #bottom_left_wrapper p{
+    position: absolute;
+    top: 35px;
+}
+.left_wrapper > #bottom_left_wrapper button{
+    position: absolute;
+    bottom: 50px;
+    width: 65%;
+    height: 17.5%;
+    background-color: #000;
+    color: #c4c4c4;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 100px;
 }
 
 .right_wrapper{
