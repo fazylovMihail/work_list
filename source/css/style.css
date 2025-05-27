@@ -44,6 +44,7 @@ h1{
     background-color: #AE2C11;
     color: #fff;
     font-weight: bold;
+    cursor: pointer;
 }
 form > a{
     margin-bottom: 15px;
