@@ -91,6 +91,11 @@ main{
     background-color: transparent;
     width: 75px;
     height: 75px;
+    transition: 0.2s;
+}
+.card > .switch_btns_wrapper button:hover{
+    transition: 0.2s;
+    transform: scale(1.1);
 }
 .card > .switch_btns_wrapper button img{
     background-color: none;
