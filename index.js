@@ -1,12 +1,12 @@
-import { sign_in, sign_up } from "./source/js/login.js";
+import { sign_up, get_tags } from "./source/js/login.js";
+import { get_cookie } from "./source/js/cookie.js";
 
-const params = new URLSearchParams(window.location.search), value = params.get('login');
 const form = document.getElementById('login_form'), inputs = form.querySelectorAll('.work_input'),
-strings = ['Зарегистрироваться', 'Войти'];
+cookie = get_cookie('login'), strings = ['Зарегистрироваться', 'Войти'];
 
-if(value){
-    console.log(true);
-    sign_in(form, inputs, strings);
+if(!cookie){
+    get_tags(form, strings, true);
+    sign_up(form, inputs);
 } else{
-    sign_up(form, inputs, strings);
+    window.location.href = './source/windows/main.html';
 }
