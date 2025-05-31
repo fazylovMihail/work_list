@@ -27,8 +27,7 @@ header{
     width: 70%;
     height: 100%;
     background-color: #c4c4c4;
-    border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
+    border-bottom-left-radius: 100px; border-bottom-right-radius: 100px;
     display: grid;
     place-items: center;
 }
