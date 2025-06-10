@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    width: 100%;
+    margin: 0;
+    font-family: 'Gothic A1';
+    background-color: #07111D;
+    font-weight: bold;
+    overflow-x: hidden;
+}
+main{
+    width: 100%;
+    height: 100vh;
+}
+button{
+    border: none;
+    cursor: pointer;
+}
+
+header{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+.header_wrapper{
+    width: 70%;
+    height: 100%;
+    background-color: #c4c4c4;
+    border-bottom-left-radius: 100px; border-bottom-right-radius: 100px;
+    display: grid;
+    place-items: center;
+}
+.header_btn_wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.header_btn_wrapper > button{
+    width: 250px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: transparent;
+    border: 2px solid #000;
+    color: #000000;
+    font-size: 25px;
+    font-family: 'Gothic A1';
+    font-weight: bold;
+}
+#sign_out_btn{
+    background-color: #000;
+    color: #c4c4c4;
+}
+
+main{
+    position: relative;
+    height: 90vh;
+    display: grid;
+    place-items: center;
+}
+.product_wrapper{
+    position: absolute;
+    bottom: 0;
+    width: 70%;
+    max-height: 90%;
+    padding-bottom: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+.product_wrapper::-webkit-scrollbar {
+  display: none;
+}
+.card{
+    width: 80%;
+    height: 135px;
+    position: relative;
+    background-color: #21323D;
+    border-radius: 100px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+}
+.card:nth-child(even){
+    background-color: #AE2C11;
+}
+.card > div{
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.card > .card_info{
+    left: 0;
+    width: 75%;
+    border-bottom-left-radius: 100px;
+    border-top-left-radius: 100px;
+}
+.card  > .card_info p{
+    position: absolute;
+    left: 75px;
+    font-size: 20px;
+    color: #c4c4c4;
+}
+.card > .switch_btns_wrapper{
+    right: 0;
+    width: 25%;
+    border-bottom-right-radius: 100px;
+    border-top-right-radius: 100px;
+    gap: 25px;
+    display: flex;
+    justify-content: center;
+}
+.card > .switch_btns_wrapper button{
+    background-color: transparent;
+    width: 75px;
+    height: 75px;
+    transition: 0.2s;
+}
+.card > .switch_btns_wrapper button:hover{
+    transition: 0.2s;
+    transform: scale(1.1);
+}
+.card > .switch_btns_wrapper button > *{
+    background-color: none;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+.card > .switch_btns_wrapper button div{
+    border: 3px solid #c4c4c4;
+    border-radius: 100px;
+}
+.card > .switch_btns_wrapper button div > img{
+    width: 75%;
+    height: 75%;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/source/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="header_wrapper">
+            <div class="header_btn_wrapper">
+                <button id="header_left_btn">Добавить</button>
+                <button id="header_right_btn">Выделить</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="product_wrapper"></div>
+    </main>
+
+    <template id="card_template">
+        <div class="card">
+            <div class="card_info"><p>Текст задачи</p></div>
+            <div class="switch_btns_wrapper"></div>
+        </div>
+    </template>
+    <template id="base_btn_template">
+        <button>
+            <img src="/source/img/галочка.svg" alt="">
+        </button>
+        <button>
+            <img src="/source/img/крестик.svg" alt="">
+        </button>
+    </template>
+    <template id="highlight_btn_template">
+        <button>
+            <div>
+                <img style="display: none;" src="/source/img/галочка.svg" alt="">
+            </div>
+        </button>
+    </template>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
