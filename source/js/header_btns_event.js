@@ -1,44 +1,31 @@
-function add(card_template, work_template, wrapper){
-    const paragraf_card = card_template.querySelector('.card_info p');
-    paragraf_card.innerHTML = 'Привет';
+import { Product } from "./class.js";
 
-    card_template.querySelector('.switch_btns_wrapper').appendChild(work_template);
-    wrapper.appendChild(card_template);
+export function add(wrapper, card_arr){
+    let new_id = '0000001';
+    const new_text = prompt('Напиши сюда задачу, к-я появиться в карточке:');
+
+    if(card_arr.length > 0){
+        new_id = (parseInt(card_arr[card_arr.length-1].id, 10) + 1).toString().padStart(new_id.length, '0');
+    } console.log(new_id);
+    const new_card = new Product([new_id, new_text]); card_arr.push(new_card); console.log(card_arr);
+    wrapper.innerHTML += new_card.Drow_Card();
+
+    const btns_wrappers = wrapper.querySelectorAll('.switch_btns_wrapper'), new_btn_wrapper = btns_wrappers[btns_wrappers.length-1];
+    new_btn_wrapper.innerHTML += new_card.Drow_Base_Btns();
 }
-function highlight(name_template, wrapper, click) {
-    const cards = wrapper.querySelectorAll('.card'); 
-    cards.forEach(card => {
-        card = {element: card, click: false};
-        
-        const switch_btns_wrapper = card.element.querySelector('.switch_btns_wrapper');
-        switch_btns_wrapper.innerHTML = null; switch_btns_wrapper.appendChild(document.getElementById(name_template).content.cloneNode(true));
+export function highlight(click, card_arr){
+    const cards = document.querySelectorAll('.card');
+    if(cards.length > 1){
+        cards.forEach((card, index) => {
+            const switch_btns_wrapper = card.querySelector('.switch_btns_wrapper'); switch_btns_wrapper.innerHTML = null;
+            if(click){
+                switch_btns_wrapper.innerHTML += card_arr[index].Drow_Base_Btns();
+            } else{
+                switch_btns_wrapper.innerHTML += card_arr[index].Drow_Highlight_Btns();
+            }
+        });
+        click = !click;
+    } else alert('Карточек должно быть больше 1, чтобы применить выделение');
 
-        const highlight_btn = switch_btns_wrapper.querySelector('button');
-        if(!click){
-            highlight_btn.addEventListener('click', function highlight_func(){
-                click = true;
-                const img = highlight_btn.querySelector('img');
-                if(card.click){
-                    card.click = false;
-                    img.style.display = 'none';
-                } else{
-                    card.click = true;
-                    img.style.display = 'block';
-                }
-            });
-        } else{
-            highlight_btn.removeEventListener('click', highlight_func);
-        }
-    });
-}
-function create_templates(names){
-    const result = [];
-    names.forEach(el => result.push(document.getElementById(el).content.cloneNode(true)));
-
-    return result
-}
-
-export function event_manager(card, wrapper, click){
-    const names = ['card_template', 'base_btn_template'], [card_template, base_btn_template] = create_templates(names);
-    card.id === 'header_left_btn'? add(card_template, base_btn_template, wrapper): wrapper.querySelectorAll('.card').length > 1 && card.id === 'header_right_btn'? highlight('highlight_btn_template', wrapper, click): alert('Чтобы выделить карточки, должны быть хотя бы две');
+    return click
 }
