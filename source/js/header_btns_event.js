@@ -12,6 +12,12 @@ export function add(wrapper, card_arr){
 
     const btns_wrappers = wrapper.querySelectorAll('.switch_btns_wrapper'), new_btn_wrapper = btns_wrappers[btns_wrappers.length-1];
     new_btn_wrapper.innerHTML += new_card.Drow_Base_Btns();
+
+    const cards = wrapper.querySelectorAll('.card');
+    cards.forEach(card => {
+        const delete_btn = card.querySelector('#delete');
+        delete_btn.addEventListener('click', () => delete_card_btn_manager(card_arr, new_card, card));
+    });
 }
 export function highlight(click, card_arr){
     const cards = document.querySelectorAll('.card');
@@ -22,10 +28,33 @@ export function highlight(click, card_arr){
                 switch_btns_wrapper.innerHTML += card_arr[index].Drow_Base_Btns();
             } else{
                 switch_btns_wrapper.innerHTML += card_arr[index].Drow_Highlight_Btns();
+                highlight_button_manager(cards[index]);
             }
         });
         click = !click;
     } else alert('Карточек должно быть больше 1, чтобы применить выделение');
 
     return click
+}
+
+function delete_card_btn_manager(card_arr, obj_card, card){
+    card.parentNode.removeChild(card);
+    card_arr.splice(card_arr.indexOf(obj_card), 1);
+}
+function highlight_button_manager(card, click=false){
+    const work_btn = card.querySelector('#highlight'), highlight_arr = []; console.log(work_btn);
+    work_btn.addEventListener('click', () => {
+        if(click){
+            const index = highlight_arr.indexOf(card);
+            highlight_arr.splice(index, 1);
+            work_btn.querySelector('img').style.display = 'none';
+        }
+        else{
+            highlight_arr.push(card);
+            work_btn.querySelector('img').style.display = 'block'
+        }
+
+        click = !click;
+        return highlight_arr;
+    });
 }

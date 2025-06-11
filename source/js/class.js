@@ -7,15 +7,24 @@ export class Product{
                 </div>`;
     }
     Drow_Base_Btns(){
-        return `<button id="">
+        return `<button id="delete">
                     <img src="/source/img/галочка.svg" alt="">
                 </button>`;
     }
     Drow_Highlight_Btns(){
-        return `<button>
+        return `<button id="highlight">
                     <div>
                         <img style="display: none;" src="/source/img/галочка.svg" alt="">
                     </div>
                 </button>`;
+    }
+    Drow_Header_Btns(highlight_click){
+        if(highlight_click){
+            return `<button id="header_after_click_left_btn">Удалить</button>
+                    <button id="header_after_click_right_btn">Отмена</button>`;
+        } else{
+            return `<button id="header_left_btn">Добавить</button>
+                    <button id="header_right_btn">Выделить</button>`;
+        }
     }
 }
