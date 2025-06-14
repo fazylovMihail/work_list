@@ -16,7 +16,7 @@ export class Product{
                 </button>`;
     }
     Drow_Highlight_Btns(){
-        return `<button id="highlight">
+        return `<button class="highlight">
                     <div>
                         <img style="display: none;" src="/source/img/галочка.svg" alt="">
                     </div>

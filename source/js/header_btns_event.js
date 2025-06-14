@@ -17,9 +17,14 @@ export function highlight(){
     for(let i=0;i<product_arr.length;i++){
         const card = product_arr[i].card; console.log(card);
         const switch_btns_wrapper = card.querySelector('.switch_btns_wrapper'); switch_btns_wrapper.innerHTML = product_arr[i].Drow_Highlight_Btns();
+
+        const highlight_btn = switch_btns_wrapper.querySelector('.highlight'); highlight_btn.onclick = () => product_arr[i].highlight_click = highlight_click_manager(highlight_btn, product_arr[i].highlight_click);
     }
 }
 
-function highlight_click(){
-    
+function highlight_click_manager(btn, highlight_click){
+    const img = btn.querySelector('img');
+    highlight_click? img.style.display = 'none': img.style.display = 'block'; highlight_click = !highlight_click;
+
+    return highlight_click;
 }
