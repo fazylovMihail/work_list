@@ -1,6 +1,6 @@
 import { Product } from "./class.js";
 
-const product_arr = [];
+const product_arr = [], highlight_arr = [];
 
 export function add(wrapper){
     const text = prompt('Напиши сюда то, что будет в карточке:'); if(!text || text.length > 30) return;
@@ -36,7 +36,14 @@ function click_manager(switch_btns_wrapper, wrapper, click, index){
 }
 function highlight_click_manager(btn, highlight_click){
     const img = btn.querySelector('img');
-    highlight_click? img.style.display = 'none': img.style.display = 'block'; highlight_click = !highlight_click;
+    if(highlight_click){
+        img.style.display = 'none';
+        highlight_arr.splice(btn.parentNode.parentNode, 1);
+    } else{
+        img.style.display = 'block';
+        highlight_arr.push(btn.parentNode.parentNode);
+    }
+    console.log(highlight_arr);
 
-    return highlight_click;
+    return highlight_click = !highlight_click;
 }
