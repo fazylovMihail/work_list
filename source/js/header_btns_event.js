@@ -1,7 +1,6 @@
 import { Product } from "./class.js";
 
-const product_arr = [];
-let highlight_arr = [];
+let product_arr = [], highlight_arr = [];;
 
 export function add(wrapper){
     const text = prompt('Напиши сюда то, что будет в карточке:'); if(!text || text.length > 30) return;
@@ -11,7 +10,7 @@ export function add(wrapper){
     click_manager(switch_btns_wrapper, wrapper, true, product_arr.length-1);
 }
 export function highlight(wrapper, click, header_btns){
-    if(product_arr.length < 2){alert('Карточек должно быть больше одной, чтобы применить выделение :)'); return}
+    if(product_arr.length < 2 && !click){alert('Карточек должно быть больше одной, чтобы применить выделение :)'); return}
 
     for(let i=0;i<product_arr.length;i++){
         const card = product_arr[i].card; console.log(card);
@@ -51,7 +50,14 @@ function highlight_click_manager(btn, highlight_click){
 
     return highlight_click = !highlight_click;
 }
-function delete_highlight_btns(wrapper){highlight_arr.forEach(highlight_card => wrapper.removeChild(highlight_card)); highlight_arr = []; console.log(highlight_arr)}
+function delete_highlight_btns(wrapper){
+    highlight_arr.forEach(highlight_card => wrapper.removeChild(highlight_card));
+    const cards = []; product_arr.forEach(product => {cards.push(product.card)});
+    if(cards.length < 1) return;
+    
+    product_arr = cards.filter(item => !highlight_arr.includes(item));
+    highlight_arr = []; console.log(product_arr, highlight_arr);
+}
 function header_btns_manager(header_btns, click, wrapper){
     console.log(click);
     const [left_btn, right_btn] = header_btns;
