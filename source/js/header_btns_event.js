@@ -13,7 +13,7 @@ export function highlight(wrapper, click, header_btns){
     if(product_arr.length < 2 && !click){alert('Карточек должно быть больше одной, чтобы применить выделение :)'); return}
 
     for(let i=0;i<product_arr.length;i++){
-        const card = product_arr[i].card; console.log(card);
+        const card = product_arr[i].card; console.log(card); console.log(product_arr);
         const switch_btns_wrapper = card.querySelector('.switch_btns_wrapper');
 
         click_manager(switch_btns_wrapper, wrapper, click, i);
@@ -23,7 +23,7 @@ export function highlight(wrapper, click, header_btns){
     return click = !click;
 }
 
-function click_manager(switch_btns_wrapper, wrapper, click, index, header_btns){
+function click_manager(switch_btns_wrapper, wrapper, click, index){
     if(click){
         switch_btns_wrapper.innerHTML = product_arr[index].Drow_Base_Btns();
         const delete_btn = wrapper.querySelectorAll('.delete')[index];
@@ -34,28 +34,27 @@ function click_manager(switch_btns_wrapper, wrapper, click, index, header_btns){
         highlight_arr = [];        
     } else{
         switch_btns_wrapper.innerHTML = product_arr[index].Drow_Highlight_Btns();
-        const highlight_btn = switch_btns_wrapper.querySelector('.highlight'); highlight_btn.onclick = () => product_arr[index].highlight_click = highlight_click_manager(highlight_btn, product_arr[index].highlight_click);
+        const highlight_btn = switch_btns_wrapper.querySelector('.highlight'); highlight_btn.onclick = () => product_arr[index].highlight_click = highlight_click_manager(highlight_btn, product_arr[index].highlight_click, index);
     }
 }
-function highlight_click_manager(btn, highlight_click){
+function highlight_click_manager(btn, highlight_click, index){
     const img = btn.querySelector('img');
     if(highlight_click){
         img.style.display = 'none';
-        highlight_arr.splice(btn.parentNode.parentNode, 1);
+        highlight_arr.splice(index, 1);
     } else{
         img.style.display = 'block';
-        highlight_arr.push(btn.parentNode.parentNode);
+        highlight_arr.push(product_arr[index]);
     }
     console.log(highlight_arr);
 
     return highlight_click = !highlight_click;
 }
 function delete_highlight_btns(wrapper){
-    highlight_arr.forEach(highlight_card => wrapper.removeChild(highlight_card));
-    const cards = []; product_arr.forEach(product => {cards.push(product.card)});
-    if(cards.length < 1) return;
+    highlight_arr.forEach(highlight_card => wrapper.removeChild(highlight_card.card));
+    if(highlight_arr.length < 1) return;
     
-    product_arr = cards.filter(item => !highlight_arr.includes(item));
+    product_arr = product_arr.filter(item => !highlight_arr.includes(item));
     highlight_arr = []; console.log(product_arr, highlight_arr);
 }
 function header_btns_manager(header_btns, click, wrapper){
